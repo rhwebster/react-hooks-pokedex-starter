@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemonTypes, createPokemon } from '../store/pokemon';
 import { useHistory } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 const CreatePokemonForm = ({ hideForm }) => {
   const pokeTypes = useSelector(state => state.pokemon.types);
@@ -39,6 +40,7 @@ const CreatePokemonForm = ({ hideForm }) => {
     e.preventDefault();
 
     const payload = {
+      id: nanoid,
       no,
       attack,
       defense,
@@ -49,6 +51,7 @@ const CreatePokemonForm = ({ hideForm }) => {
       move2,
       moves: [move1, move2],
     };
+
 
     dispatch(createPokemon(payload));
 
