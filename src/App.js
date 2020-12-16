@@ -1,8 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import PokemonBrowser from "./components/PokemonBrowser";
-import { getPokemon } from './store/pokemon'
 
 const App = () => {
   return (
