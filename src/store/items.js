@@ -25,6 +25,22 @@ const remove = (itemId, pokemonId) => ({
   pokemonId,
 });
 
+export const getItems = (id) => async dispatch => {
+  const response = await fetch(`/api/pokemon/${id}/items`);
+
+  if (response.ok) {
+    const items = await response.json();
+    dispatch(load(items, id));
+  }
+};
+
+export const editItems = (formData) => async dispatch => {
+  console.log('formData:', formData);
+  const response = await fetch(`/api/items/${formData.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+  const changedItem = await response.json();
+  dispatch(update(changedItem));
+}
+
 const initialState = {};
 
 const itemsReducer = (state = initialState, action) => {
